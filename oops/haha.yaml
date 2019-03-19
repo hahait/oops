@@ -1,0 +1,11 @@
+---
+- hosts: '{{host}}'
+  gather_facts: true
+  remote_user: admin
+  tasks:             # 下面就是一个 数组里 嵌套对象
+  - name: 创建目录 item-jar
+    file: path=/data/java/itemcenter-jar state=directory
+  - name: 检查发布前 itemcenter 的 pid
+    shell: ps -ef|grep 'itemcenter.jar'|grep -v grep|awk '{print $2}'
+  - name: kill 掉 itemcenter 的进程
+    shell: kill {{ itemcenter_pre_pid.stdout }};ps -ef|grep 'itemcenter.jar'|awk '{print $2}'

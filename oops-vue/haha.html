@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Just For Test</title>
+</head>
+<body>
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+<div id="blog-post-demo">
+    <blog-post v-model="mypost" @my-change="mychange" ref="myref"></blog-post>
+    <p>{{ mypost }}<p>
+    <!--<base-checkbox v-model="lovingVue"></base-checkbox>-->
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var BlogPost = {
+        model: {
+            prop: 'post',
+            event: 'change'
+        },
+        props: {
+            'post': String
+        },
+        template: `<div>
+                        <input
+                            :value="post"
+                            @change="$emit('my-change',$event.target.value)">
+                    </div>`
+    }
+
+    // Vue.component('base-checkbox', {
+    //     model: {
+    //         prop: 'checked',
+    //         event: 'change'
+    //     },
+    //     props: {
+    //         checked: Boolean
+    //     },
+    //     template: `
+    //         <input
+    //               type="checkbox"
+    //               v-bind:checked="checked"
+    //               v-on:change="$emit('change', $event.target.checked)"
+    //         >`
+    // })
+
+    var app = new Vue({
+        el: '#blog-post-demo',
+        data: function () {
+            return {
+                mypost: ''
+            }
+        },
+        components:{
+            'blog-post': BlogPost
+        },
+        methods: {
+            mychange: function (aa) {
+                this.mypost = aa
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
