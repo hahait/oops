@@ -66,7 +66,7 @@ pyasn1==0.4.2
 pycparser==2.18
 pycrypto==2.6.1
 Pygments==2.2.0
-PyJWT==1.6.4
+PyJWT==2.4.0
 pyldap==2.4.45
 PyMySQL==0.7.11
 PyNaCl==1.2.1
